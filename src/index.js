@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
+import Root from './Root'
+import configureStore from './configureStore'
 
-const App = () => {
-  return <div className="app">App</div>
-}
+const store = configureStore()
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Root store={store} />
   </React.StrictMode>,
   document.getElementById('root'),
 )
