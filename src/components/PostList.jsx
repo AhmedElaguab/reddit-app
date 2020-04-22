@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchPosts } from './../actions'
 
@@ -27,6 +28,14 @@ export const PostList = ({
         posts.map(post => <Post post={post} key={post.id} />)}
     </Container>
   )
+}
+
+PostList.propTypes = {
+  posts: PropTypes.array.isRequired,
+  subreddit: PropTypes.string,
+  fetchPosts: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  hasError: PropTypes.oneOfType([PropTypes.object]),
 }
 
 const mapStateToProps = ({ subreddit, postsBySubreddit }) => {
