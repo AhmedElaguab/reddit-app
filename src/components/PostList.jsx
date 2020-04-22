@@ -29,7 +29,18 @@ export const PostList = ({
   )
 }
 
-const mapStateToProps = state => ({ ...state })
+const mapStateToProps = ({ subreddit, postsBySubreddit }) => {
+  const { isLoading, posts, hasError } = postsBySubreddit[subreddit] || {
+    isLoading: true,
+    posts: [],
+  }
+  return {
+    subreddit,
+    isLoading,
+    posts,
+    hasError,
+  }
+}
 
 const mapDispatchToProps = { fetchPosts }
 
