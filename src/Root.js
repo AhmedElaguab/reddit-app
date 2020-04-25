@@ -1,8 +1,11 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import styled from 'styled-components'
+
 import Header from './components/Header'
 import PostList from './components/PostList'
-import styled from 'styled-components'
-import { Provider } from 'react-redux'
+import Article from './components/Article'
 
 const StyledRoot = styled.div`
   min-height: 100vh;
@@ -11,12 +14,17 @@ const StyledRoot = styled.div`
 
 const Root = ({ store }) => {
   return (
-    <Provider store={store}>
-      <StyledRoot>
-        <Header />
-        <PostList />
-      </StyledRoot>
-    </Provider>
+    <Router>
+      <Provider store={store}>
+        <StyledRoot>
+          <Header />
+          <Switch>
+            <Route path="/p/:postId?" component={Article} />
+            <Route path="/" component={PostList} />
+          </Switch>
+        </StyledRoot>
+      </Provider>
+    </Router>
   )
 }
 

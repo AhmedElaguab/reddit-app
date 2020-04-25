@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { snakeCase } from 'lodash'
 import styled from 'styled-components'
 import TimeAgo from './TimeAgo'
 
@@ -49,6 +51,11 @@ const StyledTitle = styled.h3`
   margin: 0;
 `
 
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`
+
 export const Post = ({ post }) => {
   const {
     title,
@@ -62,21 +69,23 @@ export const Post = ({ post }) => {
 
   return (
     <StyledPost>
-      <StyledHeader>
-        <StyledUps>{ups}</StyledUps>
-        {link_flair_text && (
-          <StyledFlair
-            background={link_flair_background_color}
-            color={link_flair_text_color}
-          >
-            {link_flair_text}
-          </StyledFlair>
-        )}
-        <StyledAuthor>
-          Posted by: {author}, <TimeAgo date={created} />
-        </StyledAuthor>
-      </StyledHeader>
-      <StyledTitle>{title}</StyledTitle>
+      <StyledLink to={{ pathname: `/p/${snakeCase(title)}}` }}>
+        <StyledHeader>
+          <StyledUps>{ups}</StyledUps>
+          {link_flair_text && (
+            <StyledFlair
+              background={link_flair_background_color}
+              color={link_flair_text_color}
+            >
+              {link_flair_text}
+            </StyledFlair>
+          )}
+          <StyledAuthor>
+            Posted by: {author}, <TimeAgo date={created} />
+          </StyledAuthor>
+        </StyledHeader>
+        <StyledTitle>{title}</StyledTitle>
+      </StyledLink>
     </StyledPost>
   )
 }

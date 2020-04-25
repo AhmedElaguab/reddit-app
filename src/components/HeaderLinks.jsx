@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Link from './Link'
+import HeaderLink from './HeaderLink'
 
 const StyledHeaderLinks = styled.div`
   display: flex;
@@ -11,8 +11,8 @@ const StyledHeaderLinks = styled.div`
 const HeaderLinks = () => {
   return (
     <StyledHeaderLinks>
-      <Link subreddit="reactjs">React</Link>
-      <Link subreddit="vuejs">Vue</Link>
+      <HeaderLink subreddit="reactjs">React</HeaderLink>
+      <HeaderLink subreddit="vuejs">Vue</HeaderLink>
     </StyledHeaderLinks>
   )
 }

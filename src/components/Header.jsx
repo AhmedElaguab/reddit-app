@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
@@ -27,12 +28,19 @@ const StyledLogo = styled.h3`
   align-items: center;
 `
 
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`
+
 const Header = ({ subreddit }) => {
   return (
     <StyledHeader>
       <Container>
         <StyledHeaderContent>
-          <StyledLogo>r/{subreddit}</StyledLogo>
+          <StyledLogo>
+            <StyledLink to="/">r/{subreddit}</StyledLink>
+          </StyledLogo>
           <HeaderLinks />
         </StyledHeaderContent>
       </Container>
