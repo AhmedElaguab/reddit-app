@@ -6,8 +6,8 @@ import styled from 'styled-components'
 import { changeSubreddit } from './../actions'
 
 const StyledLink = styled(Link)`
-  color: ${({ isActive }) => (isActive ? '#dd4814' : '#fff')};
-  background-color: ${({ isActive }) => (isActive ? '#fff' : '#dd4814')};
+  color: ${({ to }) => (to.state.isActive ? '#dd4814' : '#fff')};
+  background-color: ${({ to }) => (to.state.isActive ? '#fff' : '#dd4814')};
   border: 1px solid #fff;
   margin-left: 5px;
   padding-left: 14px;
@@ -27,9 +27,8 @@ export const HeaderLink = ({
   const isActive = subreddit === currentSubreddit
   return (
     <StyledLink
-      to={'/' + subreddit}
+      to={{ pathname: '/' + subreddit, state: { isActive } }}
       onClick={() => changeSubreddit({ subreddit })}
-      isActive={isActive}
     >
       {children}
     </StyledLink>
