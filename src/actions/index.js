@@ -23,6 +23,7 @@ const fetchPostsFailure = ({ subreddit, error }) => ({
 
 export const fetchPosts = subreddit => dispatch => {
   dispatch(fetchPostsStart({ subreddit }))
+  dispatch(changeSubreddit({ subreddit }))
   fetch(`https://www.reddit.com/r/${subreddit}.json`)
     .then(resp => resp.json())
     .then(json => dispatch(fetchPostsSuccess({ subreddit, json })))

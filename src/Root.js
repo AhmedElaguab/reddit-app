@@ -19,8 +19,8 @@ const Root = ({ store }) => {
         <StyledRoot>
           <Header />
           <Switch>
-            <Route path="/p/:postId?" component={Article} />
-            <Route path="/" component={PostList} />
+            <Route path="/:subreddit?/p/:postId?" component={Article} />
+            <Route path="/:subreddit?" component={PostList} />
           </Switch>
         </StyledRoot>
       </Provider>

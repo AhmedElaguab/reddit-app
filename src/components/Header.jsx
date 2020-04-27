@@ -39,7 +39,7 @@ const Header = ({ subreddit }) => {
       <Container>
         <StyledHeaderContent>
           <StyledLogo>
-            <StyledLink to="/">r/{subreddit}</StyledLink>
+            <StyledLink to={'/' + subreddit}>r/{subreddit}</StyledLink>
           </StyledLogo>
           <HeaderLinks />
         </StyledHeaderContent>

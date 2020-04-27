@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { snakeCase } from 'lodash'
 import styled from 'styled-components'
 import TimeAgo from './TimeAgo'
 
@@ -56,7 +55,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `
 
-export const Post = ({ post }) => {
+export const Post = ({ post, subreddit }) => {
   const {
     title,
     ups,
@@ -65,11 +64,12 @@ export const Post = ({ post }) => {
     link_flair_text,
     link_flair_background_color,
     link_flair_text_color,
+    id,
   } = post
 
   return (
     <StyledPost>
-      <StyledLink to={{ pathname: `/p/${snakeCase(title)}}` }}>
+      <StyledLink to={`/${subreddit}/p/${id}`}>
         <StyledHeader>
           <StyledUps>{ups}</StyledUps>
           {link_flair_text && (
@@ -99,10 +99,11 @@ Post.propTypes = {
     link_flair_text: PropTypes.string,
     link_flair_background_color: PropTypes.string.isRequired,
     link_flair_text_color: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }),
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({ subreddit: state.subreddit })
 
 const mapDispatchToProps = {}
 

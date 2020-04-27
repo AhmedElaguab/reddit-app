@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import ReactMarkdown from 'react-markdown'
 
 import Container from './Container'
 
-export const Article = ({ match }) => {
+export const Article = ({ match, post }) => {
   const { postId } = match.params
-
-  useEffect(() => {}, [postId])
 
   if (!postId) {
     return (
@@ -18,14 +17,32 @@ export const Article = ({ match }) => {
   }
   return (
     <Container>
-      <p>{postId}</p>
+      <h2>{post.title}</h2>
+      <hr />
+      <div>
+        <ReactMarkdown>{post.selftext}</ReactMarkdown>
+      </div>
     </Container>
   )
 }
 
 Article.propTypes = {}
 
-const mapStateToProps = state => ({})
+const mapStateToProps = ({ postsBySubreddit }, { match }) => {
+  const { postId, subreddit } = match.params
+
+  const post = postsBySubreddit[subreddit].posts.find(
+    post => post.id === postId,
+  )
+
+  console.log(postsBySubreddit)
+
+  console.log(post)
+
+  return {
+    post,
+  }
+}
 
 const mapDispatchToProps = {}
 

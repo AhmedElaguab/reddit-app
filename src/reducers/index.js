@@ -10,7 +10,7 @@ import {
 const subreddit = (state = 'reactjs', { type, payload }) => {
   switch (type) {
     case CHANGE_SUBREDDIT:
-      return payload.subreddit
+      return payload.subreddit || state
     default:
       return state
   }

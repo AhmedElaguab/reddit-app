@@ -13,10 +13,12 @@ export const PostList = ({
   fetchPosts,
   isLoading,
   hasError,
+  match,
 }) => {
+  const currentSubreddit = match.params.subreddit || subreddit
   useEffect(() => {
-    fetchPosts(subreddit)
-  }, [subreddit, fetchPosts])
+    fetchPosts(currentSubreddit)
+  }, [currentSubreddit, fetchPosts])
   return (
     <Container>
       <Loader loading={isLoading} color="#dd4814" />
